@@ -23,3 +23,15 @@ exports.getDocuments = function(query) {
     }, null, null, null, cacheTTL);
   });
 };
+
+
+describe('prismic.io - Helpers', function(){
+  it('should connect to retrieve a document', function(done) {
+    exports.getDocuments( Prismic.Predicates.any('my.product-categories.uid', ['product']) )
+    .then(function(documents){
+      assert.equal(documents.results_size, 1);
+      done();
+    });
+  });
+});
+    
