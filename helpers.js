@@ -18,7 +18,6 @@ exports.getDocuments = function(query) {
       .query( query )
       .submit(function(err, documents) {
         resolve(documents);
-        // done();
       });
     }, null, null, null, cacheTTL);
   });
@@ -27,7 +26,7 @@ exports.getDocuments = function(query) {
 
 describe('prismic.io - Helpers', function(){
   it('should connect to retrieve a document', function(done) {
-    exports.getDocuments( Prismic.Predicates.any('my.product-categories.uid', ['product']) )
+    exports.getDocuments( Prismic.Predicates.at('my.product-categories.uid', 'product') )
     .then(function(documents){
       assert.equal(documents.results_size, 1);
       done();
